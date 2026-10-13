@@ -14,14 +14,22 @@
 	limitations under the License.
 */
 
-package tproxy
+package zdecli
 
 import (
-	"github.com/openziti/ziti/v2/tunnel/intercept"
-	"github.com/openziti/ziti/v2/tunnel/intercept/proxy"
+	"fmt"
+
 	"github.com/pkg/errors"
 )
 
-func New(config Config, alerter proxy.Alerter) (intercept.Interceptor, error) {
-	return nil, errors.New("tproxy not supported on FreeBSD")
+// CommandName allow usage and such to be altered to fit a hosting executable
+var CommandName = "ziti-db-explorer"
+
+// Run always returns an error, since the interactive shell's prompt library does not build on solaris/illumos.
+func Run(string, string) error {
+	return errors.New("the interactive database explorer is not supported on solaris/illumos")
+}
+
+func PrintUsage() {
+	fmt.Printf("'%s' is not supported on solaris/illumos\n", CommandName)
 }

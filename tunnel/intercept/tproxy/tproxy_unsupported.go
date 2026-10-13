@@ -1,5 +1,7 @@
+//go:build !linux
+
 /*
-	Copyright 2019 NetFoundry Inc.
+	Copyright NetFoundry Inc.
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -14,19 +16,16 @@
 	limitations under the License.
 */
 
-package xgress_geneve
+package tproxy
 
 import (
-	"github.com/openziti/sdk-golang/v2/xgress"
+	"runtime"
+
+	"github.com/openziti/ziti/v2/tunnel/intercept"
+	"github.com/openziti/ziti/v2/tunnel/intercept/proxy"
 	"github.com/pkg/errors"
 )
 
-type listener struct{}
-
-func (self *listener) Listen(string, xgress.BindHandler) error {
-	return errors.New("geneve not supported in darwin")
-}
-
-func (self *listener) Close() error {
-	return nil
+func New(Config, proxy.Alerter) (intercept.Interceptor, error) {
+	return nil, errors.Errorf("tproxy not supported on %s", runtime.GOOS)
 }
